@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  flask-app:
+    container_name: PriceLookup
+    build:
+      context: .  # Use the current directory as the build context
+    ports:
+      - "5000:5000"  # Map container port 5000 to host port 5000
+    environment:
+      FLASK_ENV: production
+    restart: always  # Ensure the container restarts on failure
