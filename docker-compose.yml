@@ -4,9 +4,15 @@ services:
   flask-app:
     container_name: PriceLookup
     build:
-      context: .  # Use the current directory as the build context
+      context: .  # Build the Dockerfile in the current directory
     ports:
-      - "5000:5000"  # Map container port 5000 to host port 5000
+      - "5000:5000"
     environment:
       FLASK_ENV: production
-    restart: always  # Ensure the container restarts on failure
+    restart: always
+    networks:
+      - shared-network  # Use the shared external network
+
+networks:
+  shared-network:
+    external: true  # Use an external network created manually
